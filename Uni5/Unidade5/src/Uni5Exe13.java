@@ -16,24 +16,23 @@ public class Uni5Exe13 {
         int n = sc.nextInt();
 
         double totalKm = 0;
-        double totalCombustivel = 0;
+        double totalComb = 0;
 
         for (int i = 1; i <= n; i++) {
-            System.out.println("\nParada " + i + ":");
-            System.out.print("Quilometragem percorrida: ");
+            System.out.print("Parada " + i + ": Quilometragem: ");
             double km = sc.nextDouble();
 
-            System.out.print("Combustível abastecido (litros): ");
-            double litros = sc.nextDouble();
+            System.out.print("Combustível: ");
+            double comb = sc.nextDouble();
 
-            double kmPorLitro = km / litros;
-            System.out.printf("Parada " + i + ": %.2f km por litro\n", kmPorLitro);
+            double kmPorLitro = km / comb;
+            System.out.printf("Parada %d: %.1f km por litro%n", i, kmPorLitro);
 
             totalKm += km;
-            totalCombustivel += litros;
+            totalComb += comb;
         }
 
-        double mediaGeral = totalKm / totalCombustivel;
-        System.out.printf("\nQuilometragem média obtida por litro: %.2f\n", mediaGeral);
+        double media = totalKm / totalComb;
+        System.out.printf("Quilometragem média obtida por litro: %.2f%n", media);
     }
 }
