@@ -8,31 +8,44 @@ public class Uni5Exe14 {
     }
 
     public Uni5Exe14() {
-        viagem();
+        calcularLucros();
     }
 
-    public void viagem() {
-        System.out.print("Número total de reabastecimentos: ");
-        int n = sc.nextInt();
+    public void calcularLucros() {
+        int lucroMenor10 = 0;
+        int lucroEntre10e20 = 0;
+        int lucroMaior20 = 0;
+        double totalCompra = 0;
+        double totalVenda = 0;
 
-        double totalKm = 0;
-        double totalComb = 0;
+        for (int i = 1; i <= 20; i++) {
+            System.out.print("Mercadoria " + i + ": Preço de compra: ");
+            double pc = sc.nextDouble();
 
-        for (int i = 1; i <= n; i++) {
-            System.out.print("Parada " + i + ": Quilometragem: ");
-            double km = sc.nextDouble();
+            System.out.print("Mercadoria " + i + ": Preço de venda: ");
+            double pv = sc.nextDouble();
 
-            System.out.print("Combustível: ");
-            double comb = sc.nextDouble();
+            double percentualLucro = ((pv - pc) / pc) * 100;
 
-            double kmPorLitro = km / comb;
-            System.out.printf("Parada %d: %.1f km por litro%n", i, kmPorLitro);
+            if (percentualLucro < 10) {
+                lucroMenor10++;
+            } else if (percentualLucro <= 20) {
+                lucroEntre10e20++;
+            } else {
+                lucroMaior20++;
+            }
 
-            totalKm += km;
-            totalComb += comb;
+            totalCompra += pc;
+            totalVenda += pv;
         }
 
-        double media = totalKm / totalComb;
-        System.out.printf("Quilometragem média obtida por litro: %.2f%n", media);
+        double lucroTotal = totalVenda - totalCompra;
+
+        System.out.println("Mercadorias com lucro < 10%: " + lucroMenor10);
+        System.out.println("Mercadorias com 10% <= lucro <= 20%: " + lucroEntre10e20);
+        System.out.println("Mercadorias com lucro > 20%: " + lucroMaior20);
+        System.out.printf("Valor total de compra: %.2f%n", totalCompra);
+        System.out.printf("Valor total de venda: %.2f%n", totalVenda);
+        System.out.printf("Lucro total: %.2f%n", lucroTotal);
     }
 }
